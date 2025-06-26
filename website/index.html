@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>yfv</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script>
+    // Randomly redirect to either black.html or white.html
+    window.onload = function() {
+      const versions = ['black.html', 'white.html'];
+      const randomVersion = versions[Math.floor(Math.random() * versions.length)];
+      window.location.href = randomVersion;
+    }
+  </script>
+</head>
+<body>
+  <!-- This page redirects to either black.html or white.html randomly -->
+</body>
+</html>
