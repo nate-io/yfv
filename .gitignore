@@ -16,3 +16,6 @@ Thumbs.db
 # Deployment related
 .env
 credentials.json
+
+node_modules
+dist

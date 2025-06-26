@@ -5,23 +5,35 @@ This repository contains the landing page for YFV business. The landing page ran
 ## Structure
 
 - `website/` - Contains the website files:
-  - `index.html` - Entry point that dynamically loads content from either black.html or white.html
-  - `black.html` - Dark theme version content
-  - `white.html` - Light theme version content
-  - `favicon.svg` - Favicon for the site
+  - `index.js` - Node.js entry point for serving the application
+  - `package.json` - Dependencies and build scripts
+  - `firebase.json` - Firebase hosting configuration
+  - `public/` - Static assets directory:
+    - `index.html` - Entry point that dynamically loads content
+    - `black.html` - Dark theme version content
+    - `white.html` - Light theme version content
+    - `favicon.svg` - Favicon for the site
 
 - `logos/` - Contains various logo files used by the business
 
 ## Local Development
 
-To test the website locally, you can use npx with http-server:
+To test the website locally, you can use the included Express server:
 
 ```
 cd /path/to/yfv/website
-npx http-server -p 8000
+npm install
+npm start
 ```
 
-Then visit `http://localhost:8000` in your browser.
+Then visit `http://localhost:3000` in your browser.
+
+Alternatively, for a quick static file server (without Node.js):
+
+```
+cd /path/to/yfv/website/public
+npx http-server -p 8000
+```
 
 ## Deployment Options
 
@@ -39,19 +51,24 @@ Firebase Hosting provides a simple, fast hosting solution with CDN, SSL certific
    firebase login
    ```
 
-3. Initialize your project
+3. Initialize your project (if not already done)
    ```
+   cd /path/to/yfv/website
    firebase init hosting
    # Select your Firebase project
-   # Set public directory to 'website'
-   # Configure as a single-page app: No
-   # Set up automatic builds and deploys: No
+   # Specify "dist" as your public directory
+   # Configure as a single-page app: Yes
+   # Do not overwrite index.html
    ```
 
-4. Deploy to Firebase
+4. Build and deploy to Firebase
    ```
-   firebase deploy --only hosting
+   cd /path/to/yfv/website
+   npm install   # Install dependencies
+   npm run deploy   # Build and deploy
    ```
+
+   This will run the build script (which copies files from public/ to dist/) and then deploy to Firebase.
 
 ### Option 2: GCS Bucket
 
